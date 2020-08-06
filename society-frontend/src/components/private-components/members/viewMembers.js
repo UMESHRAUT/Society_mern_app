@@ -16,7 +16,6 @@ export default function ViewMembers() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(GetAllMember(societyDetails.member.member_of,societyDetails.token))
-        console.log(membersList);
         return () => {
             // cleanup
         }

@@ -57,12 +57,12 @@ router.post('/message',(req,res)=>{
 
     Notice.findOne({_id:req.body.belongTo})
     .then(notice=>{notice.messages.push(newMsg._id);notice.save().then(()=>newMsg.save().then(()=>res.send(newMsg)))})
-    .catch(()=>res.status(200).json("failes"))
+
 
 })
 
 router.get('/messagesOfNotice/:noticeId',(req,res)=>{
-    Notice.findOne({_id:req.params.noticeId},{message:1}).populate("messages").then(msgs=>res.send(msgs.messages)).catch(err=>res.send(err))
+    Notice.findOne({_id:req.params.noticeId},{message:1}).populate("messages").then(msgs=>res.send(msgs.messages))
 })
 
 module.exports=router;

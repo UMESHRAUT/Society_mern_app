@@ -39,7 +39,6 @@ export default function AddNotice() {
             console.log();
             setQuote(data[Math.round(Math.random()*10)].text);
         });
-        console.log(userDetails.member.member_of._id);
         dispatch(getNotice(userDetails.member.member_of._id,userDetails.token));
         return () => {
             // cleanup
@@ -105,7 +104,7 @@ export default function AddNotice() {
     {error&&<h1 className="show-err">{error}</h1>}
     {/* {message&&<h1 className="show-err">{message}</h1>} */}
         <div className="notice">
-            {NewNotice&&<h1 className="date"><h5>Posted At : </h5>{NewNotice?.createdAt.split("T")[0]}</h1>}
+            {NewNotice&&<h1 className="date"><span>Posted At : </span>{NewNotice?.createdAt.split("T")[0]}</h1>}
             {noticeLoading?<div className="loader"/>: edit?
             <>
             <div className="content">

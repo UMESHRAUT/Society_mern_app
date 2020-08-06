@@ -224,7 +224,7 @@ h5{
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgb(0, 255, 149);
+    background-color: rgb(255, 51, 0);
     display: flex;
     justify-content: space-around;
 }
@@ -259,7 +259,7 @@ h5{
 .hero{
     height: 70vh;
     width: 100%;
-    background: url("https://247848-766948-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2018/05/empire_state.jpg") center/cover no-repeat rgb(202, 146, 146);
+    background: url("./image/society.jpg") center/cover no-repeat rgb(202, 146, 146);
     background-attachment: fixed;
     display: flex;
     justify-content: center;
