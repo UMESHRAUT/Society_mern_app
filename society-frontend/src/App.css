@@ -125,6 +125,7 @@ a{
     display: inline;
     /* overflow: hidden; */
 }
+
 .nav-bar{
     z-index: 1;
     position: fixed;
@@ -141,7 +142,7 @@ a{
     align-items: center;
     align-content: center;
     justify-content: center;
-    border: .1rem solid rgb(85, 26, 139);
+    border: .1rem solid rgb(82, 28, 133);
     border-radius: 1rem;
     height: 3rem;
 }
@@ -183,7 +184,7 @@ a{
 }
 .nav-links a:hover{
     /* background-color: rgb(1, 204, 119); */
-    color: rgb(52, 77, 223);
+    color: rgb(86, 111, 255);
 }
 h5{
     display: inline;
@@ -224,7 +225,7 @@ h5{
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgb(0, 255, 149);
+    background-color: rgb(40, 226, 148);
     display: flex;
     justify-content: space-around;
 }
@@ -254,6 +255,7 @@ h5{
     .nav-links a{
         padding: 2rem;
     }
+    
 }
 /* HERO */
 .hero{
