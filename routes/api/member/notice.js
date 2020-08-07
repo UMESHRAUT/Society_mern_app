@@ -8,9 +8,10 @@ const Message = require('../../../models/message');
 const router=express.Router();
 
 
-router.get('/',(req,res)=>{
-
-    res.send("responce from server");
+router.post('/:societyId',async (req,res)=>{
+    console.log("ID "+req.params.societyId);
+    Notice.find({ofSociety:req.params.societyId}).sort({"createdAt":-1})
+    .then(data=>res.json(data[0]))
     })
 
 router.post('/',noticeValidator,runValidation,(req,res)=>{
@@ -62,7 +63,7 @@ router.post('/message',(req,res)=>{
 
 })
 
-router.get('/messagesOfNotice/:noticeId',(req,res)=>{
+router.post('/messagesOfNotice/:noticeId',(req,res)=>{
     Notice.findOne({_id:req.params.noticeId},{message:1}).populate("messages").then(msgs=>res.send(msgs.messages))
 })
 

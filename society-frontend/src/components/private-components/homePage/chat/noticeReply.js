@@ -38,7 +38,7 @@ function NoticeReply() {
 
     const getreplyes=()=>{
         if(NewNotice?._id!=undefined){
-            fetch(`/api/notice/messagesOfNotice/${NewNotice?._id}`)
+            fetch(`/api/notice/messagesOfNotice/${NewNotice?._id}`,{method:"post",headers:{"content-type":"application/json"}})
             .then(data=>data.json())
             .then(messag=>{setMessages(messag)})
             .catch(()=>setMessages({msg:"default"}))

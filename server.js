@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser=require('body-parser')
 const dotenv=require('dotenv');
 const errorHandler = require('./middlewares/errorHandler');
-const path=require('path')
+const path=require("path")
 
 dotenv.config({path:'./config/config.env'})
 
