@@ -13,7 +13,7 @@ export const addNotice=(subject,about,ofSociety,token)=>dispatch=>{
 
 export const getNotice=(ofSociety,token)=>dispatch=>{
     dispatch({type:GET_NOTICE_REQUEST})
-    fetch(`/api/notice/getNotice/${ofSociety}`,
+    fetch(`/api/notice/${ofSociety}`,
     {method:"get",
     headers:{"content-type":"application/json","x-auth-token":token}})
     .then(res=>res.json())

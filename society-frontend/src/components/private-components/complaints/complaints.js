@@ -72,7 +72,7 @@ function Complaints() {
             <div className="complaints"> 
             {loading?<div className="loading-complaints"><h1>Loading...</h1></div>:
             error?<div>{error}</div>:
-            complaints.map((data,index)=>{
+            complaints?.map((data,index)=>{
                 return( complaints!=='undefuned'?
                 <div className="individual" key={index}>
                 <div className="complaint-title">
