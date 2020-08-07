@@ -34,14 +34,14 @@ export const RegisterMember=(name,member_of,role,room_no,email,password)=>(dispa
 }
 
 
-export const GetAllMember=(member_of,token)=>(dispatch)=>{
-
+export const GetAllMember=(id,token)=>(dispatch)=>{
     dispatch({type:MEMBER_LIST_REQUEST});
     try {
+        console.log(id);
         const data={
             method:"post",
             headers:{"content-type":"application/json","x-auth-token":token},
-            body:JSON.stringify({"member_of":member_of})
+            body:JSON.stringify({"member_of":id})
         }
         fetch("/api/member/members",data)
         .then(res=>res.json())

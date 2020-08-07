@@ -14,6 +14,7 @@ const auth = require('../../../middlewares/Auth');
 // MEMBER ACOUNT REGISTER/LOGIN
 
 router.post('/members',auth,(req,res)=>{
+    console.log(req.body.member_of);
     Member.find({member_of:req.body.member_of})
         .then(memberList=>res.json(memberList))
 })

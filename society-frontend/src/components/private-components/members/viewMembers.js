@@ -15,7 +15,8 @@ export default function ViewMembers() {
     const societyDetails=JSON.parse(memberInfo);
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(GetAllMember(societyDetails.member.member_of,societyDetails.token))
+        console.log(societyDetails.member.member_of._id);
+        dispatch(GetAllMember(societyDetails.member.member_of._id,societyDetails.token))
         return () => {
             // cleanup
         }
