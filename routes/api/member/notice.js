@@ -8,7 +8,7 @@ const Message = require('../../../models/message');
 const router=express.Router();
 
 
-router.get('/getNotice/:societyId',async (req,res)=>{
+router.get('/',(req,res)=>{
 
     res.send("responce from server");
     })
