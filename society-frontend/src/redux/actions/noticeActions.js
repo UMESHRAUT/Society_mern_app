@@ -15,8 +15,9 @@ export const getNotice=(Society,token)=>dispatch=>{
     try {
         dispatch({type:GET_NOTICE_REQUEST})
         fetch(`/api/notice/getNotice/${Society}`,
-        {method:"get",
-        headers:{"content-type":"application/json","x-auth-token":token}
+        {method:"post",
+        headers:{"content-type":"application/json","x-auth-token":token},
+
     }).then(res=>res.json())
         .then(resp=>resp.error?dispatch({type:GET_NOTICE_FAIL,payload:(resp.error)}):dispatch({type:GET_NOTICE_SUCESS,payload:resp}))
         .catch(()=>console.log("get notice log"))

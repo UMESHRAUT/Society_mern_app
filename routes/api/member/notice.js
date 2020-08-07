@@ -8,7 +8,7 @@ const Message = require('../../../models/message');
 const router=express.Router();
 
 
-router.get('/getNotice/:Society',async (req,res)=>{
+router.post('/getNotice/:Society',async (req,res)=>{
     console.log(req.params.Society);
     Notice.find({Society:req.params.Society}).sort({"createdAt":-1})
     .then(data=>data.length>0?res.json(data[0]):res.status(404).json({error:"No Notice found"})).catch(err=>res.status(404).json(err))
