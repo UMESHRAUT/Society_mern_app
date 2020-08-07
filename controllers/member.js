@@ -26,7 +26,7 @@ exports.createMember=(req,res)=>{
 
     Member.findOne({email}).exec((err,user)=>{
         if(err){
-            return res.status(401).json({
+            return res.status(500).json({
                 error:"something went wrong!."
             })
         }

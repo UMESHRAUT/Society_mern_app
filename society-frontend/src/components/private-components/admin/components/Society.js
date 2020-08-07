@@ -16,6 +16,13 @@ function Society(props) {
         .then(()=>window.location='/');
     }
 
+    const confirm_cancle=()=>{
+        var press=window.confirm("Are you sure you want to delete?");
+        if(press==true){
+            deleteSociety();
+        }
+    }
+
 
     useEffect(() => {
         dispatch(getSocietyDetails(props.match.params.id))
@@ -31,8 +38,9 @@ function Society(props) {
                 <h1>{socities?.name}</h1>
                 <h2>{socities?.address}</h2>
                 <h2>Registration No: {socities?.reg_no}</h2>
-                <button className="deleteSociety"onClick={deleteSociety}>Delete society <RiDeleteBinLine  className="deleteBtn"/></button>
+                <button className="deleteSociety"onClick={confirm_cancle}>Delete society <RiDeleteBinLine  className="deleteBtn"/></button>
             </div>
+
             <div className="All-members">
                 {socities?.members?.map(member=>{
                     return <div className="members-list">
