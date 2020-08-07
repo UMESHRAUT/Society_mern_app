@@ -9,9 +9,8 @@ const router=express.Router();
 
 
 router.get('/getNotice/:societyId',async (req,res)=>{
-    console.log("ID "+req.params.societyId);
-    Notice.find({ofSociety:req.params.societyId}).sort({"createdAt":-1})
-    .then(data=>res.json(data[0]))
+
+    res.send("responce from server");
     })
 
 router.post('/',noticeValidator,runValidation,(req,res)=>{
