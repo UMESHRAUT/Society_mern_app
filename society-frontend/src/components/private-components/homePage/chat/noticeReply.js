@@ -16,7 +16,7 @@ function NoticeReply() {
     const {loading,error,NewNotice}=getNewNotice;
 
     const send=(e)=>{
-        console.log(NewNotice._id+"----"+memberDetails.member.id+"--"+msg);
+        // console.log(NewNotice._id+"----"+memberDetails.member.id+"--"+msg);
         if(msg!="" && NewNotice!="undefined"){
             setMsgLoad(true);
         e.preventDefault()
@@ -24,7 +24,7 @@ function NoticeReply() {
         {method:"post",
         headers:{"content-type":"application/json"},
         body:JSON.stringify({Notice:NewNotice._id,owner:memberDetails.member.id,msg:msg})
-        }).then(data=>data.json()).then(log=>{console.log(log);getreplyes()})
+        }).then(data=>data.json()).then(log=>{console.log("ding");getreplyes()}).catch(err=>console.log(err))
         setMsg("");
         setMsgLoad(false);
     }
@@ -39,10 +39,10 @@ function NoticeReply() {
 
     const getreplyes=()=>{
         if(NewNotice?._id!=undefined){
-            console.log(`/api/notice/messagesOfNotice/${NewNotice?._id}`);
+            // console.log(`/api/notice/messagesOfNotice/${NewNotice?._id}`);
             fetch(`/api/notice/messagesOfNotice/${NewNotice?._id}`,{method:"post",headers:{"content-type":"application/json"}})
             .then(data=>data.json())
-            .then(messag=>{setMessages(messag);console.log(messag);})
+            .then(messag=>{setMessages(messag);})
             .catch(()=>setMessages({msg:"default"}))
                 
         }

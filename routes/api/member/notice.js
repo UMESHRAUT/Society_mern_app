@@ -11,7 +11,7 @@ const router=express.Router();
 router.post('/getNotice',async (req,res)=>{
     console.log(req.body.Society);
     Notice.find({Society:req.body.Society}).sort({"createdAt":-1})
-    .then(data=>data.length>0?res.json(data[0]):res.status(404).json({error:"No Notice found"}))
+    .then(data=>data.length>0?res.json(data[0]):res.status(404).json({error:"No Notice found"})).catch(err=>res.status(404).json(err))
     })
 
 router.post('/postNotice',noticeValidator,runValidation,(req,res)=>{
@@ -53,7 +53,7 @@ router.post('/message',(req,res)=>{
         owner:req.body.owner,
         msg:req.body.msg
     })
-    newMsg.save().then(()=>res.send("saved in message")).catch(err=>console.log(err))
+    newMsg.save().then(()=>Message.find({Notice:newMsg.Notice}).populate("owner").then(msg=>{console.log(msg);res.send(msg);})).catch(err=>res.status(404).json(err))
 })
 
 router.post('/messagesOfNotice/:noticeId',(req,res)=>{

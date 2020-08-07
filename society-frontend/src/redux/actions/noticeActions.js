@@ -12,13 +12,17 @@ export const addNotice=(subject,about,Society,token)=>dispatch=>{
 }
 
 export const getNotice=(Society,token)=>dispatch=>{
-    dispatch({type:GET_NOTICE_REQUEST})
-    fetch(`/api/notice/getNotice`,
-    {method:"post",
-    headers:{"content-type":"application/json","x-auth-token":token},
-    body:JSON.stringify({Society})
-})
-    .then(res=>res.json())
-    .then(resp=>resp.error?dispatch({type:GET_NOTICE_FAIL,payload:(resp.error)}):dispatch({type:GET_NOTICE_SUCESS,payload:resp}))
-    .catch(()=>console.log("get notice log"))
+    try {
+        dispatch({type:GET_NOTICE_REQUEST})
+        fetch(`/api/notice/getNotice`,
+        {method:"post",
+        headers:{"content-type":"application/json","x-auth-token":token},
+        body:JSON.stringify({Society})
+    }).then(res=>res.json())
+        .then(resp=>resp.error?dispatch({type:GET_NOTICE_FAIL,payload:(resp.error)}):dispatch({type:GET_NOTICE_SUCESS,payload:resp}))
+        .catch(()=>console.log("get notice log"))
+    } catch (error) {
+        console.log(error);
+    }
+
 }
