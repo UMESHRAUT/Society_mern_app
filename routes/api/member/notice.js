@@ -9,7 +9,7 @@ const router=express.Router();
 
 
 router.get('/:societyId',async (req,res)=>{
-    Society.findOne({_id:req.params.societyId},{notice:1,_id:0}).populate({path:'notice',options:{sort:{'createdAt':-1}}}).then(data=>{data.notice.length==0?res.json({error:"no Notice"}):res.json(data.notice[0])})
+    Society.findOne({_id:req.params.societyId},{notice:1,_id:0}).populate({path:'notice',options:{sort:{'createdAt':-1}}}).then(data=>{data.notice.length==0?res.json({error:"no Notice"}):res.json({notice:data.notice[0]})})
     })
 
 router.post('/',noticeValidator,runValidation,(req,res)=>{
@@ -21,7 +21,7 @@ router.post('/',noticeValidator,runValidation,(req,res)=>{
     Society.findOne({_id:newNotice.ofSociety})
     .then(society=>{society.notice.push(newNotice._id);society.save()
         .then(()=>newNotice.save()
-        .then(()=>res.json(newNotice)))})
+        .then(()=>res.json({newNotice})))})
         // await society.save()
         // .then(()=>newNotice.save().then(notice=>res.send(notice))) })
     

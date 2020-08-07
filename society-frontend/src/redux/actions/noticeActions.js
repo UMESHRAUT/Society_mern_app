@@ -11,11 +11,11 @@ export const addNotice=(subject,about,ofSociety,token)=>dispatch=>{
     .then(resp=>resp.error?dispatch({type:ADD_NOTICE_FAIL,payload:(resp.error)}):dispatch({type:ADD_NOTICE_SUCESS,payload:"Notice Added Sucessfully"}))
 }
 
-export const getNotice=(ofSociety,token)=>async dispatch=>{
+export const getNotice=(ofSociety,token)=>dispatch=>{
     dispatch({type:GET_NOTICE_REQUEST})
-    await fetch(`/api/notice/${ofSociety}`,
-        {method:"get",
-        headers:{"content-type":"application/json","x-auth-token":token}})
-        .then(res=>res.json())
-        .then(resp=>resp.error?dispatch({type:GET_NOTICE_FAIL,payload:(resp.error)}):dispatch({type:GET_NOTICE_SUCESS,payload:resp}))
+    fetch(`/api/notice/${ofSociety}`,
+    {method:"get",
+    headers:{"content-type":"application/json","x-auth-token":token}})
+    .then(res=>res.json())
+    .then(resp=>resp.error?dispatch({type:GET_NOTICE_FAIL,payload:(resp.error)}):dispatch({type:GET_NOTICE_SUCESS,payload:resp.notice}))
 }
