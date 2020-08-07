@@ -15,7 +15,7 @@ export default function Profile() {
                 <div ><img className="profile" src="https://avixa.azureedge.net/portal/images/default-source/icons/just-for-you-icon.png?sfvrsn=3c0f0e5b_2" alt="member"/></div>
                 <div className="personal">
                     <h1>{memberDetails.member.name}</h1>
-                    <h2>Society: {memberDetails.member.member_of.name}</h2>
+                    <h2>Society: {memberDetails.member.society.name}</h2>
                     <h3>Room No.: {memberDetails.member.room_no}</h3>
                 </div>
             </div>

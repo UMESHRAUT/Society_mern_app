@@ -11,6 +11,7 @@ export default function Activate({match}) {
         e.preventDefault();
         setLoading(true);
         Cookies.remove('message');
+        console.log(match.params.token);
         const data={
             method:"post",
             headers:{"content-type":"application/json"},

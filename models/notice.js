@@ -13,13 +13,9 @@ const noticeSchema=new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-    ofSociety:{
+    Society:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Society"
-    },
-    messages:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Message"
-    }]
+    }
 })
 module.exports=Notice=mongoose.model("Notice",noticeSchema);

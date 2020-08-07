@@ -2,13 +2,13 @@ const mongoose=require('mongoose');
 
 const messageSchema= new mongoose.Schema({
 
-    forNotice:{
+    Notice:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Notice'
     },
     owner:{
-    type:String,
-    required:true
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Member"
     },
     msg:{
         type:String,

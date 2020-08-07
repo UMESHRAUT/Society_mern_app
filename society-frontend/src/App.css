@@ -91,7 +91,7 @@ a{
     z-index: 99999;
 }
 .show-creation{
-    height: 100%;
+    height: 20rem;
     transition: all .5s;
     transform: translateY(0);
 }
@@ -906,6 +906,15 @@ border-radius: 1rem;
 .name{
     color: rgb(197, 117, 80);
 }
+
+.roleChanger{
+    display: none;
+    height: 2rem;
+    margin: 1rem;
+}
+.members-list:hover .roleChanger{
+    display: inline;
+}
   .members-list{
       display: flex;
       flex-wrap: wrap;
@@ -917,6 +926,14 @@ border-radius: 1rem;
       padding: .5rem;
       height: 5rem;
       align-items: center;
+  }
+
+  .members-list:hover{
+      height: 6rem;
+      background-color: rgb(236, 233, 233);
+      width: 75%;
+      transition: all .2s;
+
   }
 
   .details{

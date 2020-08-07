@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 
 const complaintSchema= new mongoose.Schema({
 
-    belongTo:{
+    owner:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Member'
     },
@@ -21,6 +21,9 @@ const complaintSchema= new mongoose.Schema({
     filedAt:{
         type:Date,
         default:Date.now()
+    },
+    closedOn:{
+        type:Date
     }
 }
 )

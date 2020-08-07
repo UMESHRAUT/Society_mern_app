@@ -2,13 +2,19 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSocietyDetails } from '../../../../redux/actions/societyActions'
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { GetAllMember } from '../../../../redux/actions/memberActions';
 
 
 function Society(props) {
     const dispatch = useDispatch()
     const getSociety = useSelector(state => state.getSociety);
     const{loading,socities,error}=getSociety;
+    const listMembers = useSelector(state => state.listMembers)
+    const {loading:memberLoading,membersList,error:memberError}=listMembers;
 
+    const memberLogin = useSelector(state => state.memberLogin)
+    const{memberInfo}=memberLogin
+    const userDetails=JSON.parse(memberInfo);
 
     const deleteSociety=()=>{
         console.log(props.match.params.id);
@@ -23,9 +29,20 @@ function Society(props) {
         }
     }
 
+    const changeRole=async(member)=>{
+        console.log(member._id+" " +member.name);
+        await fetch(`/api/member/changeRole/${member._id}`,
+        {method:'put',
+        headers:{"content-type":"application/json"},
+        body:JSON.stringify({role:member.role=="Secratory"?"Member":"Secratory"})})
+        await dispatch(GetAllMember(props.match.params.id,userDetails.token))
+
+    }
 
     useEffect(() => {
+        // console.log(props.match.params.id);
         dispatch(getSocietyDetails(props.match.params.id))
+        dispatch(GetAllMember(props.match.params.id,userDetails.token))
         return () => {
             // cleanup
         }
@@ -42,11 +59,13 @@ function Society(props) {
             </div>
 
             <div className="All-members">
-                {socities?.members?.map(member=>{
-                    return <div className="members-list">
+    {memberLoading&&<div className="loader"/>}
+    {memberError&&<div className="show-err"/>}
+                {membersList?.map(member=>{
+                    return <div className="members-list" key={member._id}>
                         <h1>{member.name}</h1>
                 <h2>Room No:{member.room_no}</h2>
-                <h2>Role: {member.role}</h2>
+                <h2>Role: {member.role} <button className="roleChanger" onClick={()=>changeRole(member)}>Change Role</button> </h2>
                         </div>
                 })}
             </div>

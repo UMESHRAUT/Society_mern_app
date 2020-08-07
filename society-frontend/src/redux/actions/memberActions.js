@@ -15,13 +15,13 @@ export const Login=(email,password)=> async(dispatch)=>{
     }
 }
 
-export const RegisterMember=(name,member_of,role,room_no,email,password)=>(dispatch)=>{
+export const RegisterMember=(name,society,role,room_no,email,password)=>(dispatch)=>{
     dispatch({type:MEMBER_REGISTER_REQUEST});
     try {
         const data={
             method:"post",
             headers:{"content-type":"application/json"},
-            body:JSON.stringify({name,member_of,role,room_no,email,password})
+            body:JSON.stringify({name,society,role,room_no,email,password})
         }
         fetch("/api/member/register",data)
         .then(res=>res.json())
@@ -40,7 +40,7 @@ export const GetAllMember=(id,token)=>(dispatch)=>{
         const data={
             method:"post",
             headers:{"content-type":"application/json","x-auth-token":token},
-            body:JSON.stringify({"member_of":id})
+            body:JSON.stringify({"society":id})
         }
         fetch("/api/member/members",data)
         .then(res=>res.json())

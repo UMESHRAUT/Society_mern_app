@@ -5,10 +5,10 @@ const router = express.Router();
 
 
 
-router.get('/seeComplaint',auth,(req,res)=>{
+router.post('/seeComplaint',auth,(req,res)=>{
     (req.member.role=="Secratory")?
     Complaint.find({}).sort({status:-1}).then(ret=>res.json(ret)):
-    Complaint.find({member_of:req.body.member_of}).sort({status:-1}).then(ret=>res.json(ret))
+    Complaint.find({society:req.body.society}).sort({status:-1}).then(ret=>res.json(ret))
 })
 
 // router.get('/seeComplaint',auth,(req,res)=>{

@@ -3,7 +3,7 @@ const crypto=require('crypto');
 const Schema=mongoose.Schema;
 const memberSchema= new Schema({
 
-    member_of:{
+    society:{
         type:Schema.Types.ObjectId,
         ref:"Society"
     },
@@ -20,10 +20,6 @@ const memberSchema= new Schema({
         type:String,
         required:true
     },
-    complaints:[{
-        type:Schema.Types.ObjectId,
-        ref:'Complaint'
-    }],
     email:{
         type:String,
         required:true,

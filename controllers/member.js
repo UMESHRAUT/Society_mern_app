@@ -22,7 +22,7 @@ var transport = nodemailer.createTransport({
   });
 
 exports.createMember=(req,res)=>{
-    const {name,member_of,room_no,role,email,password}=req.body;
+    const {name,society,room_no,role,email,password}=req.body;
 
     Member.findOne({email}).exec((err,user)=>{
         if(err){
@@ -40,7 +40,7 @@ exports.createMember=(req,res)=>{
         const token=jwt.sign(
             {
             name,
-            member_of,
+            society,
             room_no,
             role,
             email,
@@ -87,17 +87,18 @@ exports.createMember=(req,res)=>{
 
 exports.activateMember=async (req,res)=>{
     const {token}=req.body;
+    console.log(token);
 
     if(token){
         return jwt.verify(token,process.env.JWT_ACCOUNT_ACTIVATION,(err)=>{
             if(err){
                 return res.status(401).json({error:"token link has expored"})
             }
-            const {name,member_of,room_no,role,email,password}=jwt.decode(token);
+            const {name,society,room_no,role,email,password}=jwt.decode(token);
 
             const newMember=new Member({
                 name,
-                member_of,
+                society,
                 room_no,
                 role,
                 email,
@@ -119,10 +120,7 @@ exports.activateMember=async (req,res)=>{
 
                 }
                 else{
-                Society.findOne({name:member_of})
-                .then(async society=>{ society.members.push(newMember._id);society.save(); console.log(society.members);newMember.member_of=society.id})
-                .then(()=>newMember.save().then(()=>res.json({message:"registered sucessfully"})))
-                .catch(error=>res.status(400).json({error:"member alredy registered with"}));
+                newMember.save().then(()=>res.json({message:"registered sucessfully"}))
                 }
             })
         })
@@ -149,13 +147,13 @@ exports.LogInMember=async (req,res)=>{
         const token=jwt.sign({_id:member._id,role:member.role},process.env.JWT_SECRET,{
             expiresIn:'7d',
         })
-        const {member_of,name,room_no,role}=member
-        const data=Society.findOne({_id:member_of},{name}).then(data=>res.json({
+        const {society,name,room_no,role}=member
+        const data=Society.findOne({_id:society},{name}).then(data=>res.json({
             token,
             member:{
                 id:member._id,
                 name,
-                member_of:data,
+                society:data,
                 room_no,
                 role,
             },
@@ -263,8 +261,8 @@ exports.LogInMember=async (req,res)=>{
 
 // exports.createMember=(req,res)=>{
 
-//     const {name,room_no,member_of,email,password}=req.body;
-//     if(!name || ! room_no || !member_of || !email || !password){
+//     const {name,room_no,society,email,password}=req.body;
+//     if(!name || ! room_no || !society || !email || !password){
 //         res.status(400).json({msg:"please enter all fields"})
 //     }
 //     Member.findOne({email})
@@ -274,7 +272,7 @@ exports.LogInMember=async (req,res)=>{
 //             const newMember=new Member({
 //                 name,
 //                 room_no,
-//                 member_of,
+//                 society,
 //                 email,
 //                 password
 //             })

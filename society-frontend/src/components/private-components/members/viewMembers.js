@@ -15,14 +15,14 @@ export default function ViewMembers() {
     const societyDetails=JSON.parse(memberInfo);
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(GetAllMember(societyDetails.member.member_of._id,societyDetails.token))
+        dispatch(GetAllMember(societyDetails.member.society._id,societyDetails.token))
         return () => {
             // cleanup
         }
     }, [])
     return (
         <div>
-            <div className="members-heading"><h1>members in {societyDetails.member.member_of.name}</h1></div>
+            <div className="members-heading"><h1>members in {societyDetails.member.society.name}</h1></div>
             <div className="load-center">
             {loading && <div className="loader"/>}</div>
             {membersList?.map(member=>{

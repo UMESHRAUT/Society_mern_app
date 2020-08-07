@@ -21,7 +21,6 @@ function getNoticeReducer(state={},action){
         case GET_NOTICE_SUCESS:
             return {loading:false,NewNotice:action.payload};
         case GET_NOTICE_FAIL:
-            console.log("fail");
             return {loading:false,error:action.payload}
         default:
             return state;

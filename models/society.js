@@ -14,14 +14,6 @@ const societySchema= new Schema({
         type:String,
         required:true
     },
-    members:[{
-        type:Schema.Types.ObjectId,
-        ref:"Member"
-    }],
-    notice:[{
-        type:Schema.Types.ObjectId,
-        ref:"Notice"
-    }],
     createdAt:{
         type:Date,
         default:Date.now()

@@ -244,8 +244,8 @@ exports.LogInAdmin=(req,res)=>{
 
 // exports.createMember=(req,res)=>{
 
-//     const {name,room_no,member_of,email,password}=req.body;
-//     if(!name || ! room_no || !member_of || !email || !password){
+//     const {name,room_no,society,email,password}=req.body;
+//     if(!name || ! room_no || !society || !email || !password){
 //         res.status(400).json({msg:"please enter all fields"})
 //     }
 //     Member.findOne({email})
@@ -255,7 +255,7 @@ exports.LogInAdmin=(req,res)=>{
 //             const newMember=new Member({
 //                 name,
 //                 room_no,
-//                 member_of,
+//                 society,
 //                 email,
 //                 password
 //             })

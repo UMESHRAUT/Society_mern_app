@@ -39,7 +39,7 @@ export default function AddNotice() {
             console.log();
             setQuote(data[Math.round(Math.random()*10)].text);
         });
-        dispatch(getNotice(userDetails.member.member_of._id,userDetails.token));
+        dispatch(getNotice(userDetails.member.society._id,userDetails.token));
         return () => {
             // cleanup
         }
@@ -48,8 +48,8 @@ export default function AddNotice() {
 
     const DeleteNotice=(e)=>{
         e.preventDefault();
-        fetch(`/api/notice/${NewNotice._id}`,{method:'delete'}).then(()=>{
-             dispatch(getNotice(userDetails.member.member_of._id,userDetails.token));
+        fetch(`/api/notice/deleteNotice/${NewNotice._id}`,{method:'delete'}).then(()=>{
+             dispatch(getNotice(userDetails.member.society._id,userDetails.token));
 
         })
     }
@@ -62,29 +62,27 @@ export default function AddNotice() {
     
     const submit=async (e)=>{
         e.preventDefault()
+        await dispatch(addNotice(notice.subject,notice.about,userDetails.member.society._id,userDetails.token))
 
-        await dispatch(addNotice(notice.subject,notice.about,userDetails.member.member_of._id,userDetails.token))
-
-        await dispatch(getNotice(userDetails.member.member_of._id,userDetails.token));
+        await dispatch(getNotice(userDetails.member.society._id,userDetails.token));
         setEdit(false);
         setNotice(false);
         console.log("logging");
         setEdit(false);
-        await dispatch(getNotice(userDetails.member.member_of._id,userDetails.token));
+        await dispatch(getNotice(userDetails.member.society._id,userDetails.token));
         
     }
     
     const editNotice=async(e)=>{
         e.preventDefault()
-        console.log(userDetails.member.member_of);
-        await fetch(`/api/notice/${NewNotice._id}`,
+        console.log(userDetails.member.society);
+        await fetch(`/api/notice/EditNotice/${NewNotice._id}`,
         {method:"put",
         headers:{"content-type":"application/json"},
         body:JSON.stringify({subject:notice.subject,about:notice.about})}
         )
-        await dispatch(getNotice(userDetails.member.member_of._id,userDetails.token));
+        await dispatch(getNotice(userDetails.member.society._id,userDetails.token));
         setEdit(false);
-
     }
 
     const handleChange=(e)=>{

@@ -11,13 +11,12 @@ router.post('/createAdmin',createAdmin)
 router.post('/activateAdmin',activateAdmin)
 router.post('/adminLogin',LogInAdmin)
 
-router.get('/seeSociety',(req,res)=>{
+router.post('/seeSociety',(req,res)=>{
     Society.find({})
-        .sort({reg_no:1})
         .then(societies=>res.json(societies)).catch(err=>res.status(400).json(err))
 })
 
-router.get('/SocietyDetails/:id',(req,res)=>{
+router.post('/SocietyDetails/:id',(req,res)=>{
     Society.findOne({_id:req.params.id}).populate("members").then(data=>res.send(data)).catch(err=>res.status(400).json(err))
 })
  
@@ -25,7 +24,7 @@ router.delete('/DeleteSociety/:id',(req,res)=>{
     Society.findOneAndDelete({_id:req.params.id}).then(data=>res.json({msg:`Society Deleted`})).catch(err=>res.status(400).json(err))
 })
 
-router.get('/getAllSociety',(req,res)=>{
+router.post('/getAllSociety',(req,res)=>{
     Society.find({})
         .sort({reg_no:-1})
         .then(societies=>res.json(societies)).catch(err=>res.status(400).json(err))

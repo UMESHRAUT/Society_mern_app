@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { IoIosSend } from 'react-icons/io';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 function NoticeReply() {
@@ -15,14 +16,14 @@ function NoticeReply() {
     const {loading,error,NewNotice}=getNewNotice;
 
     const send=(e)=>{
-        console.log(NewNotice._id);
+        console.log(NewNotice._id+"----"+memberDetails.member.id+"--"+msg);
         if(msg!="" && NewNotice!="undefined"){
             setMsgLoad(true);
         e.preventDefault()
         fetch("/api/notice/message",
         {method:"post",
         headers:{"content-type":"application/json"},
-        body:JSON.stringify({belongTo:NewNotice._id,owner:memberDetails.member.name,msg:msg})
+        body:JSON.stringify({Notice:NewNotice._id,owner:memberDetails.member.id,msg:msg})
         }).then(data=>data.json()).then(log=>{console.log(log);getreplyes()})
         setMsg("");
         setMsgLoad(false);
@@ -38,9 +39,10 @@ function NoticeReply() {
 
     const getreplyes=()=>{
         if(NewNotice?._id!=undefined){
+            console.log(`/api/notice/messagesOfNotice/${NewNotice?._id}`);
             fetch(`/api/notice/messagesOfNotice/${NewNotice?._id}`,{method:"post",headers:{"content-type":"application/json"}})
             .then(data=>data.json())
-            .then(messag=>{setMessages(messag)})
+            .then(messag=>{setMessages(messag);console.log(messag);})
             .catch(()=>setMessages({msg:"default"}))
                 
         }
@@ -52,12 +54,12 @@ function NoticeReply() {
     }
     return (
         <div className="reply">
-            {loading&&<div className="loader"/>}
-            {msgLoad&&<div className="load-center"  />}
-            {messages?.map((message,indx)=>{
+            {loading?<div className="loader"/>:
+            msgLoad?<div className="load-center"  />:
+            messages?.map((message,indx)=>{
                 return <div className="message" key={indx}>
                     <span className={memberDetails.member.name==message?.owner?"mine":"others"}>
-                        <h4 className="name">{message.owner}</h4>
+                        <Link to="/members"><h4 className="name">{message?.owner?.name}</h4></Link>
                         <h2 className="mineMessage">
                     {message.msg}
                     </h2>

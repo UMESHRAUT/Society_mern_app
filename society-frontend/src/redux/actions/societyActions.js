@@ -20,7 +20,7 @@ export const addSociety=(name,address,reg_no)=>(dispatch)=>{
 export const viewSocieties=()=>(dispatch)=>{
     dispatch({type:SOCIETY_VIEW_REQUEST});
         const SocietyData={
-            method:"get",
+            method:"post",
             headers:{"content-type":"application/json"}
         }
         fetch("/api/admin/getAllSociety",SocietyData)
@@ -35,7 +35,7 @@ export const viewSocieties=()=>(dispatch)=>{
 export const getSocietyDetails=(id)=>(dispatch)=>{
     dispatch({type:SOCIETY_DETAILS_REQUEST});
         const SocietyData={
-            method:"get",
+            method:"post",
             headers:{"content-type":"application/json"},
         }
         fetch(`/api/admin/SocietyDetails/${id}`,SocietyData)

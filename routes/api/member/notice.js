@@ -8,29 +8,26 @@ const Message = require('../../../models/message');
 const router=express.Router();
 
 
-router.post('/:societyId',async (req,res)=>{
-    console.log("ID "+req.params.societyId);
-    Notice.find({ofSociety:req.params.societyId}).sort({"createdAt":-1})
-    .then(data=>res.json(data[0]))
+router.post('/getNotice',async (req,res)=>{
+    console.log(req.body.Society);
+    Notice.find({Society:req.body.Society}).sort({"createdAt":-1})
+    .then(data=>data.length>0?res.json(data[0]):res.status(404).json({error:"No Notice found"}))
     })
 
-router.post('/',noticeValidator,runValidation,(req,res)=>{
+router.post('/postNotice',noticeValidator,runValidation,(req,res)=>{
     const newNotice=new Notice({
-        ofSociety:req.body.ofSociety,
+        Society:req.body.Society,
         subject:req.body.subject,
         about:req.body.about
     })
-    Society.findOne({_id:newNotice.ofSociety})
-    .then(society=>{society.notice.push(newNotice._id);society.save()
-        .then(()=>newNotice.save()
-        .then(()=>res.json({newNotice})))})
+        newNotice.save()
+        .then(()=>res.json({newNotice}))
         // await society.save()
         // .then(()=>newNotice.save().then(notice=>res.send(notice))) })
     
 })
-router.delete('/:id',async (req,res)=>{
+router.delete('/deleteNotice/:id',async (req,res)=>{
     const id=req.params.id;
-    const updates=req.body;
     try{
         const notice=await Notice.findByIdAndRemove(id);
         res.send(notice)
@@ -39,7 +36,7 @@ router.delete('/:id',async (req,res)=>{
     }
 })
 
-router.put('/:id',async (req,res)=>{
+router.put('/EditNotice/:id',async (req,res)=>{
     const id=req.params.id;
     const updates=req.body;
     try{
@@ -52,19 +49,16 @@ router.put('/:id',async (req,res)=>{
 
 router.post('/message',(req,res)=>{
     const newMsg=new Message({
-        belongTo:req.body.belongTo,
+        Notice:req.body.Notice,
         owner:req.body.owner,
         msg:req.body.msg
     })
-
-    Notice.findOne({_id:req.body.belongTo})
-    .then(notice=>{notice.messages.push(newMsg._id);notice.save().then(()=>newMsg.save().then(()=>res.send(newMsg)))})
-
-
+    newMsg.save().then(()=>res.send("saved in message")).catch(err=>console.log(err))
 })
 
 router.post('/messagesOfNotice/:noticeId',(req,res)=>{
-    Notice.findOne({_id:req.params.noticeId},{message:1}).populate("messages").then(msgs=>res.send(msgs.messages))
+    // res.send("reaching")
+    Message.find({Notice:req.params.noticeId}).populate("owner").then(msg=>{console.log(msg);res.send(msg);});
 })
 
-module.exports=router;
+module.exports=router;  
