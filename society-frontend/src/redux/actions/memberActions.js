@@ -37,7 +37,6 @@ export const RegisterMember=(name,member_of,role,room_no,email,password)=>(dispa
 export const GetAllMember=(id,token)=>(dispatch)=>{
     dispatch({type:MEMBER_LIST_REQUEST});
     try {
-        console.log(id);
         const data={
             method:"post",
             headers:{"content-type":"application/json","x-auth-token":token},

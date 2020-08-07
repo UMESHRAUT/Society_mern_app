@@ -9,7 +9,9 @@ const router=express.Router();
 
 
 router.get('/:societyId',async (req,res)=>{
-    Society.findOne({_id:req.params.societyId},{notice:1,_id:0}).populate({path:'notice',options:{sort:{'createdAt':-1}}}).then(data=>{data.notice.length==0?res.json({error:"no Notice"}):res.json({notice:data.notice[0]})})
+    console.log("ID "+req.params.societyId);
+    Notice.find({ofSociety:req.params.societyId}).sort({"createdAt":-1})
+    .then(data=>res.json(data[0]))
     })
 
 router.post('/',noticeValidator,runValidation,(req,res)=>{
