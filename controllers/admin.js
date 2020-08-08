@@ -3,22 +3,22 @@ const jwt=require('jsonwebtoken')
 const _ =require('lodash');
 const Admin = require('../models/admin');
 
-// const transport = nodemailer.createTransport({
-//     service: 'Gmail',
-//     auth: {
-//       user: "rautumesh300@gmail.com",
-//       pass: process.env.mailPassword
-//     }
-//   });
-
-var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+const transport = nodemailer.createTransport({
+    service: 'Gmail',
     auth: {
-      user: "0bd50ec6d1c1d8",
-      pass: "47920f1ffeb570"
+      user: "rautumesh300@gmail.com",
+      pass: process.env.mailPassword
     }
   });
+
+// var transport = nodemailer.createTransport({
+//     host: "smtp.mailtrap.io",
+//     port: 2525,
+//     auth: {
+//       user: "0bd50ec6d1c1d8",
+//       pass: "47920f1ffeb570"
+//     }
+//   });
 
 exports.createAdmin=(req,res)=>{
     const {name,email,password}=req.body;
