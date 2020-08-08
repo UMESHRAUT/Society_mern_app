@@ -9,6 +9,7 @@ export default function ViewMembers() {
     // const data=JSON.parse(membersList)
 
     const[show,setShow]=useState(false);
+    const[show_details,setShowDetails]=useState(false);
 
     const memberLogin = useSelector(state => state.memberLogin)
     const {memberInfo}=memberLogin;
@@ -23,15 +24,15 @@ export default function ViewMembers() {
     return (
         <div>
             <div className="members-heading"><h1>members in {societyDetails.member.society.name}</h1></div>
-            <div className="load-center">
-            {loading && <div className="loader"/>}</div>
+            
+            {loading && <div className="loader"/>}
             {membersList?.map(member=>{
-                return <div className="members-list" key={member._id} onClick={()=>setShow(true)}>
+                return <div className="members" key={member._id} onClick={()=>{setShow(true)}}>
                     <div>
                     <h1>{member.name}</h1>
                     </div>
                     {
-                    <div className="details " >
+                    <div className="details" >
                         <div >
                     <h2 className="roomNo">Room no:{member.room_no}</h2>
                     <h3>mail:{member.email}</h3>

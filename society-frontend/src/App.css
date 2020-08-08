@@ -132,9 +132,12 @@ a{
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgb(0, 255, 149);
+    background-color: rgb(70, 218, 127);
 }
-
+a{
+    text-decoration: none;
+    color: rgb(17, 33, 121);
+}
 .getStart{
     display: flex;
     width: auto;
@@ -193,6 +196,12 @@ h5{
     height: 310px;
     
 }
+.show{
+    display: inline;
+}
+.hide{
+    display: none;
+}
 .nav-links2{
     height: 4rem;
     margin-left: 5rem;
@@ -225,7 +234,7 @@ h5{
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgb(40, 226, 148);
+    background-color: rgb(70, 218, 127);
     display: flex;
     justify-content: space-around;
 }
@@ -259,7 +268,7 @@ h5{
 }
 /* HERO */
 .hero{
-    height: 70vh;
+    height: 100%;
     width: 100%;
     background: url("./image/society.jpg") center/cover no-repeat rgb(202, 146, 146);
     background-attachment: fixed;
@@ -929,6 +938,18 @@ border-radius: 1rem;
       height: 5rem;
       align-items: center;
   }
+  .members{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(221, 216, 216);
+    border-radius: 1rem;
+    width: 70%;
+    margin: 1rem auto;
+    justify-content: space-around;
+    padding: .5rem;
+    height: 5rem;
+    align-items: center;
+  }
 
   .members-list:hover{
       height: 6rem;
@@ -950,10 +971,19 @@ border-radius: 1rem;
           overflow: hidden;
           align-items: flex-start;
       }
+      .members{
+        width: 99%;
+        height: auto;
+        overflow: hidden;
+        align-items: flex-start;
+      }
       .details{
-          display: none;
+        display: flex;
+        flex-direction: column;      }
+      .show_details{
+display: none;
       }
       .roomNo{
-          display: block;
+          display: flex;
       }
   }

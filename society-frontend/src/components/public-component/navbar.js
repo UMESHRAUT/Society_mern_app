@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Component } from 'react'
 import {FaAlignRight, FaBuilding} from 'react-icons/fa'
 import { useSelector } from 'react-redux'
+import Profile from '../private-components/homePage/profile'
 
 
 export default function NavBar(){
@@ -67,9 +68,9 @@ export default function NavBar(){
             <li>
             <Link to="/signin" >Signin</Link>
             </li>
-            <li><div className="getStart">
+            {/* <li><div className="getStart">
             <Link to="/register">Get Started</Link></div>
-            </li>
+            </li> */}
             <li>
             <Link to="/AdminHome"> Admin</Link>
             </li>
