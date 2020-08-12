@@ -6,9 +6,13 @@ const Society = require('../models/society');
 
 var transport = nodemailer.createTransport({
     service: 'Gmail',
+    secure:false,
     auth: {
       user: "rautumesh300@gmail.com",
       pass: process.env.mailPassword
+    },
+    tls:{
+        rejectUnauthorized:false
     }
   });
 
