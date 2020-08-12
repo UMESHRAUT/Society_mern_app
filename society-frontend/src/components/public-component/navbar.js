@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Component } from 'react'
 import {FaAlignRight, FaBuilding} from 'react-icons/fa'
+import {AiOutlineClose} from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import Profile from '../private-components/homePage/profile'
 
@@ -29,7 +30,7 @@ export default function NavBar(){
                 <div className="nav-header">
             <Link to="/home"> <h1 className="brandName"> <FaBuilding/> SOCIETY</h1><h5>.Network</h5></Link>
             <button type="button" className="nav-btn" onClick={handleToggle}>
-                <FaAlignRight className="nav-icon" /> 
+            {!isOpen?<FaAlignRight className="nav-icon" />:<AiOutlineClose className="nav-icon" />} 
             </button>
             </div>
             {userDetails.member.role==='Admin'?

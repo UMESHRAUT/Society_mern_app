@@ -29,7 +29,7 @@ export default function Register(props) {
             // props.history.push("/")
         // }
 
-        Cookies.remove('message');
+        setErr(false)
         console.log(message);
         fetch("/api/admin/seeSociety",{method:'post'}).then(row=>row.json()).then(list=>setList(list))
         
@@ -63,10 +63,10 @@ export default function Register(props) {
         <h1><IoMdPersonAdd/> Register Member</h1>
         
             {loading && <h2>loading...</h2>}
-            {error && <h2>{error}</h2>}
+            {error && <h2 className="show-err" >{error}</h2>}
             
             {err && <h2 className="show-err">All fields are compulsary</h2>}
-            {message && <h3 className="top-msg">{message.message || message.error}</h3>}
+            {message && <h3 className="top-msg">{message}</h3>}
             <label>Name</label>
             <input type="text" name="name" value={details.name} onChange={handleChange}/>
 
@@ -98,7 +98,7 @@ export default function Register(props) {
             <input type="password" name="C_password" value={details.C_password} onChange={handleChange}/>    
              <Link to="/" >
             <button className="btn primary" onClick={submit} value="submit">Register</button></Link>
-            <label>Alredy have an account?  <Link to="/signin" ><span className="color_black">Log in</span></Link></label>
+            <label>Alredy have an account?  <Link to="/signin" ><span className="color_black    ">Log in</span></Link></label>
         </form>
         </div>
     )

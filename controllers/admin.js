@@ -3,26 +3,35 @@ const jwt=require('jsonwebtoken')
 const _ =require('lodash');
 const Admin = require('../models/admin');
 
-// const transport = nodemailer.createTransport({
-//     service: 'Gmail',
-//     auth: {
-//       user: "rautumesh300@gmail.com",
-//       pass: process.env.mailPassword
-//     }
-//   });
-
-var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+const transport = nodemailer.createTransport({
+    service: 'Gmail',
     auth: {
-      user: "0bd50ec6d1c1d8",
-      pass: "47920f1ffeb570"
+      user: "rautumesh300@gmail.com",
+      pass: process.env.mailPassword
     }
   });
 
-exports.createAdmin=(req,res)=>{
-    const {name,email,password}=req.body;
+// var transport = nodemailer.createTransport({
+//     host: "smtp.mailtrap.io",
+//     port: 2525,
+//     auth: {
+//       user: "0bd50ec6d1c1d8",
+//       pass: "47920f1ffeb570"
+//     }
+//   });
 
+exports.createAdmin=(req,res)=>{
+    const {name,email,password,confirm_pass}=req.body;
+
+
+
+    if(password!==confirm_pass){
+        console.log("Password Does not match with confirm password");
+        return res.status(400).json({
+            error:"Password Does not match with confirm password"
+        })
+        
+    }
     Member.findOne({email}).exec((err,user)=>{
         if(err){
             return res.status(401).json({
@@ -63,7 +72,7 @@ exports.createAdmin=(req,res)=>{
                     <a href="${process.env.CLIENT_URL}/society/activateAdmin/${token}" target="_blank">click hear to Activate </a>
                     <hr />
                     <p>this email contains sensitive information</p>
-                    <a href="${process.env.CLIENT_URL}" target="_blank>${process.env.CLIENT_URL}</a>
+                    <a href="${process.env.CLIENT_URL}" target="_blank">${process.env.CLIENT_URL}</a>
                     </div>
             `
         }

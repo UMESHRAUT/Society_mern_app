@@ -57,13 +57,16 @@ function NoticeReply() {
             {loading?<div className="loader"/>:
             msgLoad?<div className="load-center"  />:
             messages?.map((message,indx)=>{
-                return <div className="message" key={indx}>
-                    <span className={memberDetails.member.name==message?.owner?"mine":"others"}>
+
+                return <div key={indx} className={memberDetails.member.name!==message?.owner?.name ?"float_left":"float_right"}>
+                        <div className="message" >
+                    <div className={memberDetails.member.name==message?.owner?.name ?"mine":"others"}>
                         <Link to="/members"><h4 className="name">{message?.owner?.name}</h4></Link>
                         <h2 className="mineMessage">
                     {message.msg}
                     </h2>
-                    </span>
+                    </div>
+                    </div>
                     </div>
             })}
             <form onSubmit={send}>

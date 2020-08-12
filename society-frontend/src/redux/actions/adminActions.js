@@ -15,20 +15,16 @@ export const AdminLogin=(email,password)=> async(dispatch)=>{
     }
 }
 
-export const RegisterAdmin=(name,email,password)=>(dispatch)=>{
+export const RegisterAdmin=(name,email,password,confirm_pass)=>(dispatch)=>{
     dispatch({type:ADMIN_REGISTER_REQUEST});
-    try {
         const data={
             method:"post",
             headers:{"content-type":"application/json"},
-            body:JSON.stringify({name,email,password})
+            body:JSON.stringify({name,email,password,confirm_pass})
         }
         fetch("/api/admin/createAdmin",data)
         .then(res=>res.json())
-        .then(message=>{ dispatch({type:ADMIN_REGISTER_SUCESS,payload:message});
-            Cookies.set('message',JSON.stringify(message));
-        })
-    } catch (error) {
-        dispatch({type:ADMIN_REGISTER_FAIL,payload:error.error});
-    }
+        .then(resp=>resp.message?dispatch({type:ADMIN_REGISTER_SUCESS,payload:resp.message}):
+        dispatch({type:ADMIN_REGISTER_FAIL,payload:resp.error})
+        )
 }

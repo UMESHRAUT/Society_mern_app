@@ -9,7 +9,8 @@ export default function AdminRegister() {
     const [details,setDetails]=useState({
         name:"",
         email:"",
-        password:""
+        password:"",
+        C_password:""
     })
     const [err,setErr]=useState(false);
     const adminRegister = useSelector(state => state.adminRegister)
@@ -32,8 +33,8 @@ export default function AdminRegister() {
 
     function submit(e){
         e.preventDefault();
-        if(details.name!=""&& details.email!="" && details.password!=""){
-        dispatch(RegisterAdmin(details.name,details.email,details.password))
+        if(details.name!=""&& details.email!="" && details.password!="" && details.C_password!=""){
+        dispatch(RegisterAdmin(details.name,details.email,details.password,details.C_password))
         }else{
             setErr(true);
         }
@@ -54,7 +55,9 @@ export default function AdminRegister() {
             <label>Email</label>
             <input type="text" name="email" value={details.email} onChange={handleChange}/>       
             <label>password</label>
-            <input type="password" name="password" value={details.password} onChange={handleChange}/>    
+            <input type="password" name="password" value={details.password} onChange={handleChange}/>
+            <label>Confirm Password</label>
+            <input type="password" name="C_password" value={details.C_password} onChange={handleChange}/>    
              <Link to="/" >
             <button className="btn primary" onClick={submit} value="submit">Register</button></Link>
             <label>Alredy have an account?  <Link to="/AdminSignin" >Log in </Link></label>

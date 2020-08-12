@@ -24,20 +24,23 @@ const transport = nodemailer.createTransport({
 exports.createMember=(req,res)=>{
     const {name,society,room_no,role,email,password,confirm_pass}=req.body;
 
-    Member.findOne({email}).exec((err,user)=>{
+
+
+    if(password!==confirm_pass){
+        console.log("Password Does not match with confirm password");
+        return res.status(400).json({
+            error:"Password Does not match with confirm password"
+        })
+        
+    }
+
+    Member.findOne({$or:[{email},{room_no}]}).exec((err,user)=>{
         if(err){
             return res.status(500).json({
                 error:"something went wrong!."
             })
         }
 
-        if(password!==confirm_pass){
-            console.log("Password Does not match with confirm password");
-            return res.status(400).json({
-                error:"Password Does not match with confirm password"
-            })
-            
-        }
 
         if(user){
             console.log(user.room_no);
@@ -49,7 +52,7 @@ exports.createMember=(req,res)=>{
             }
             console.log(password+""+confirm_pass);
             return res.status(400).json({
-                error:"member is alredy exist!!."
+                error:"Member with this Email is alredy exist!!"
             })
         }
 
@@ -84,7 +87,7 @@ exports.createMember=(req,res)=>{
                     <a href="${process.env.CLIENT_URL}/society/activate/${token}" target="_blank">click hear to Activate </a>
                     <hr />
                     <p>this email contains sensitive information</p>
-                    <a href="${process.env.CLIENT_URL}" target="_blank>${process.env.CLIENT_URL}</a>
+                    <a href="${process.env.CLIENT_URL}" target="_blank">${process.env.CLIENT_URL}</a>
                     </div>
             `
         }

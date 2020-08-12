@@ -144,6 +144,8 @@ a{
     left: 0;
     width: 100%;
     background-color: rgb(71,132,255);
+    color: rgb(253, 253, 255);
+
 }
 a{
     text-decoration: none;
@@ -167,13 +169,16 @@ a{
 }
 .nav-btn{
     font-size: 2rem;
-    color: black;
+    color: rgb(253, 253, 255);
     border: none;
     background: transparent;
     outline: none;
     cursor: pointer;
+    transition: all .3s;
 }
-
+.nav-icon{
+    transition: all 1s;
+}
 .nav-links{
     height: 0;
     overflow: hidden;
@@ -366,8 +371,13 @@ font-size: 1.3rem;
 }
 .title{
     margin: auto;
+    flex-wrap: wrap;
     text-decoration: underline;
-    padding: 5rem 0 0 3rem;
+    word-wrap: break-word;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: .3rem;
+    /* padding: 5rem 0 0 3rem; */
 }
 .service_logo{
     display: inline-block;
@@ -624,11 +634,12 @@ article{
 .complaint-title{
     margin-bottom: 2rem;
     width: 100%;
+    /* overflow: hidden; */
     background: rgb(238, 238, 238);
     border-bottom: .5px solid ;
-    height: 3rem;
     font-size:x-large;
     display: flex;
+    flex-wrap: wrap;
     justify-content:space-between ;
     align-items: center;
     text-justify: distribute;
@@ -820,6 +831,16 @@ border-radius: 1rem;
     display: flex;
     margin: 1.5rem;
     border-radius: 1rem;
+}
+.float_left{
+    float: left;
+    display: flex;
+    width: 100%;
+    /* flex-direction: ; */
+}
+.float_right{
+
+    float: right;
 }
 .quote{
     display: flex;
