@@ -30,7 +30,6 @@ export default function Register(props) {
         // }
 
         setErr(false)
-        console.log(message);
         fetch("/api/admin/seeSociety",{method:'post'}).then(row=>row.json()).then(list=>setList(list))
         
         return () => {

@@ -4,7 +4,7 @@ const _ =require('lodash');
 const Member = require('../models/member');
 const Society = require('../models/society');
 
-const transport = nodemailer.createTransport({
+var transport = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
       user: "rautumesh300@gmail.com",
@@ -45,14 +45,14 @@ exports.createMember=(req,res)=>{
         if(user){
             console.log(user.room_no);
             if(user.room_no===room_no){
-                console.log("Member with this room No. is alredy exist");
+                console.log("Member with this room No. is already exist");
                 return res.status(400).json({
-                    error:"Member with this room no alredy exist"
+                    error:"Member with this room no already exist"
                 }) 
             }
             console.log(password+""+confirm_pass);
             return res.status(400).json({
-                error:"Member with this Email is alredy exist!!"
+                error:"Member with this Email is already exist!!"
             })
         }
 
@@ -78,7 +78,7 @@ exports.createMember=(req,res)=>{
             ],
             from:{
                 address:process.env.EMAIL_FROM,
-                name:"Newton Schoole Projects."
+                name:"Newton School Projects."
             },
             subject:"Account activatoin link",
             html:`
@@ -99,7 +99,7 @@ exports.createMember=(req,res)=>{
                 })
             }
             res.json({
-                message:`email has been sucessfully sent to ${email}. follow the instriction to activate you account.`
+                message:`Email has been sucessfully sent to ${email}. Follow the instriction to activate you account.`
             })
         }) 
     });
@@ -128,14 +128,14 @@ exports.activateMember=async (req,res)=>{
             Member.findOne({email:newMember.email}).exec(async(err,member)=>{
                 if(err){
                     return res.status(400).json({
-                        error:"something went wrong"
+                        error:"Something went wrong"
                     });
                 }
 
                 else if(member){
-                    console.log("the account alredy been activated");
+                    console.log("The account alredy been activated");
                     return res.status(400).json({
-                        error:"the account alredy been activated"
+                        error:"This account is already activated"
                     })
 
                 }
@@ -154,7 +154,7 @@ exports.LogInMember=async (req,res)=>{
     Member.findOne({email}).exec((err,member)=>{
         if(err || !member){
             return res.status(400).json({
-                error:"this email Id is not registered"
+                error:"This email Id is not registered"
             })
         }
 
