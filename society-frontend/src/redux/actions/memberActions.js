@@ -15,13 +15,13 @@ export const Login=(email,password)=> async(dispatch)=>{
     }
 }
 
-export const RegisterMember=(name,society,role,room_no,email,password)=>(dispatch)=>{
+export const RegisterMember=(name,society,role,room_no,email,password,confirm_pass)=>(dispatch)=>{
     dispatch({type:MEMBER_REGISTER_REQUEST});
     try {
         const data={
             method:"post",
             headers:{"content-type":"application/json"},
-            body:JSON.stringify({name,society,role,room_no,email,password})
+            body:JSON.stringify({name,society,role,room_no,email,password,confirm_pass})
         }
         fetch("/api/member/register",data)
         .then(res=>res.json())

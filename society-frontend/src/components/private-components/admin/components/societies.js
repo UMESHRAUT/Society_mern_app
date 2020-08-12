@@ -24,7 +24,7 @@ function Societies() {
             <div className="society-container">
         {loading&&<div className="loader"></div>}
         {socities?.map(society=>{
-        return<Link to={{pathname:`/society/${society._id}`}} key={society._id} className="link"> <div key={society._id} className="society-list">
+        return<Link to={{pathname:`/society/${society._id}`}} key={society._id} className="link"> <div key={society._id} className="members-list">
           <h1>{society.name}</h1>
             <h3>{society.address}</h3>
             <h3>Registration No.:{society.reg_no}</h3>

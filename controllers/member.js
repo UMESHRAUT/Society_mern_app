@@ -4,25 +4,25 @@ const _ =require('lodash');
 const Member = require('../models/member');
 const Society = require('../models/society');
 
-// const transport = nodemailer.createTransport({
-//     service: 'Gmail',
-//     auth: {
-//       user: "rautumesh300@gmail.com",
-//       pass: process.env.mailPassword
-//     }
-//   });
-
-var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+const transport = nodemailer.createTransport({
+    service: 'Gmail',
     auth: {
-      user: "0bd50ec6d1c1d8",
-      pass: "47920f1ffeb570"
+      user: "rautumesh300@gmail.com",
+      pass: process.env.mailPassword
     }
   });
 
+// var transport = nodemailer.createTransport({
+//     host: "smtp.mailtrap.io",
+//     port: 2525,
+//     auth: {
+//       user: "0bd50ec6d1c1d8",
+//       pass: "47920f1ffeb570"
+//     }
+//   });
+
 exports.createMember=(req,res)=>{
-    const {name,society,room_no,role,email,password}=req.body;
+    const {name,society,room_no,role,email,password,confirm_pass}=req.body;
 
     Member.findOne({email}).exec((err,user)=>{
         if(err){
@@ -31,11 +31,28 @@ exports.createMember=(req,res)=>{
             })
         }
 
+        if(password!==confirm_pass){
+            console.log("Password Does not match with confirm password");
+            return res.status(400).json({
+                error:"Password Does not match with confirm password"
+            })
+            
+        }
+
         if(user){
+            console.log(user.room_no);
+            if(user.room_no===room_no){
+                console.log("Member with this room No. is alredy exist");
+                return res.status(400).json({
+                    error:"Member with this room no alredy exist"
+                }) 
+            }
+            console.log(password+""+confirm_pass);
             return res.status(400).json({
                 error:"member is alredy exist!!."
             })
         }
+
 
         const token=jwt.sign(
             {

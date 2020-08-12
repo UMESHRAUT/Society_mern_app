@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSocietyDetails } from '../../../../redux/actions/societyActions'
-import { RiDeleteBinLine } from 'react-icons/ri';
+import { RiDeleteBinLine,RiUserSettingsLine } from 'react-icons/ri';
 import { GetAllMember } from '../../../../redux/actions/memberActions';
 
 
@@ -26,6 +26,13 @@ function Society(props) {
         var press=window.confirm("Are you sure you want to delete?");
         if(press==true){
             deleteSociety();
+        }
+    }
+
+    const confirm_cancle_role=(member)=>{
+        var press=window.confirm("Are you sure you want to chnage role of member?");
+        if(press==true){
+            changeRole(member);
         }
     }
 
@@ -65,7 +72,7 @@ function Society(props) {
                     return <div className="members-list" key={member._id}>
                         <h1>{member.name}</h1>
                 <h2>Room No:{member.room_no}</h2>
-                <h2>Role: {member.role} <button className="roleChanger" onClick={()=>changeRole(member)}>Change Role</button> </h2>
+                <h2>Role: {member.role} <button className="roleChanger" onClick={confirm_cancle_role}><RiUserSettingsLine/> Change Role</button> </h2>
                         </div>
                 })}
             </div>

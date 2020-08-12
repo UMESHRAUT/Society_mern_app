@@ -48,7 +48,7 @@ export default function SocietyRegister(props) {
     }
 
     return (<>
-            <button className="addSociety" onClick={()=>setAdd(true)}>Add Society</button>
+            <button className={!add?"addSociety":"display_none"} onClick={()=>setAdd(true)}>Add Society</button>
         <form className={!add?"add-society": "add-society show-creation" } onSubmit={submit}>
             <div>
         <h1><IoMdPersonAdd/> Register new Society</h1>
@@ -69,7 +69,10 @@ export default function SocietyRegister(props) {
                 <input type="text" name="registration_no" value={details.registration_no} onChange={handleChange}/>  
                 </div>
             </div>
+            <div>
             <button className="btn primary" type="submit">Register</button>
+            <button className="btn primary" type="button" onClick={()=>{setAdd(false)}} >cancle</button>
+            </div>
         </form>
         </>
     )

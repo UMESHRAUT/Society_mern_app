@@ -12,7 +12,8 @@ export default function Register(props) {
         role:"Member",
         room_no:"",
         email:"",
-        password:""
+        password:"",
+        C_password:""
     })
     const [err,setErr]=useState(false);
     const memberRegister = useSelector(state => state.memberRegister)
@@ -49,8 +50,8 @@ export default function Register(props) {
 
     function submit(e){
         e.preventDefault();
-        if(details.name!="" && details.society!="" && details.room_no!="" && details.email!="" && details.password!=""){
-        dispatch(RegisterMember(details.name,details.society,details.role,details.room_no,details.email,details.password))
+        if(details.name!="" && details.society!="" && details.room_no!="" && details.email!="" && details.password!="" && details.C_password){
+        dispatch(RegisterMember(details.name,details.society,details.role,details.room_no,details.email,details.password,details.C_password))
         }else{
             setErr(true);
         }
@@ -92,10 +93,12 @@ export default function Register(props) {
             <label>Email</label>
             <input type="text" name="email" value={details.email} onChange={handleChange}/>       
             <label>password</label>
-            <input type="password" name="password" value={details.password} onChange={handleChange}/>    
+            <input type="password" name="password" value={details.password} onChange={handleChange}/> 
+            <label>Confirm Password</label>
+            <input type="password" name="C_password" value={details.C_password} onChange={handleChange}/>    
              <Link to="/" >
             <button className="btn primary" onClick={submit} value="submit">Register</button></Link>
-            <label>Alredy have an account?  <Link to="/signin" >Log in </Link></label>
+            <label>Alredy have an account?  <Link to="/signin" ><span className="color_black">Log in</span></Link></label>
         </form>
         </div>
     )
