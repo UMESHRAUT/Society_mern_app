@@ -92,7 +92,6 @@ export default function AddNotice() {
         })
     }
 
-
     return(
         <div className="updates">
         <h1 className="quote">Thought of the    Day: "{quote}"</h1>

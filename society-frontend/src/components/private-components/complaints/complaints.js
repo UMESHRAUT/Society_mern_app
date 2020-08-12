@@ -56,7 +56,7 @@ function Complaints() {
         const dataTo={
         method:"put",
         headers:{"content-type":"application/json","x-auth-token":memberDetails.token},
-        body:JSON.stringify({status:"Solved"})
+        body:JSON.stringify({status:"Solved",closedOn:Date.now})
         }   
         fetch(`/api/complaint/EditComplaint/${e._id}`,dataTo).then(data=>console.log(data)).then(()=>dispatch(getComplaints()))
     }
@@ -71,7 +71,7 @@ function Complaints() {
             </div>
             <div className="complaints"> 
             {loading?<div className="loading-complaints"><h1>Loading...</h1></div>:
-            error?<div>{error}</div>:
+            error?<h1>{error}</h1>:
             complaints?.map((data,index)=>{
                 return( complaints!=='undefined'?
                 <div className="individual" key={index}>
@@ -88,7 +88,13 @@ function Complaints() {
                         {data.description}
                     </span>
                 </div>
-                    <div className="complaint-of"> {memberDetails.member.role=="Secratory" && <span>{data.name}</span>} <span>filed At  {data.filedAt.split("T")[0]}</span></div>
+                    <div className="complaint-of">
+                         {memberDetails.member.role=="Secratory" && 
+                         <span>Filed By: {data?.owner?.name}</span>} 
+                         <span>Filed At: {data?.filedAt?.split("T")[0]}</span>
+                         {console.log(data)}
+                         {data.status==="Solved"&&<span>Solved At:{data?.closedOn?.split("T")[0]}</span>}
+                         </div>
              </div>:<h1>you have not filed any complaint yet.</h1>)
             })}
                         

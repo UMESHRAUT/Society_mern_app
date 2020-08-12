@@ -3,19 +3,21 @@ import Axios from "axios";
 
 export const getComplaints=()=> async (dispatch)=>{
 
-    try {
         dispatch({type:COMPLAINTS_LIST_REQUEST});
-        const getComplaint={
-            method:"post",
-            headers:{"content-type":"application/json","x-auth-token":JSON.parse(localStorage.getItem("memberInfo")).token},
+        try {
+            const getComplaint={
+                method:"get",
+                headers:{"content-type":"application/json","x-auth-token":JSON.parse(localStorage.getItem("memberInfo")).token},
+            }
+            fetch('/api/complaint/seeComplaint',getComplaint)
+                .then(res=>res.json())
+                .then(complaintData=>complaintData.error?
+                    dispatch({type:COMPLAINTS_LIST_FAIL,payload:complaintData.error}):
+                    dispatch({type:COMPLAINTS_LIST_SUCESS,payload:complaintData}))
+        } catch (error) {
+            console.log(error);
         }
-        fetch('/api/complaint/seeComplaint',getComplaint)
-            .then(res=>res.json())
-            .then(complaintData=>dispatch({type:COMPLAINTS_LIST_SUCESS,payload:complaintData}));
 
-    } catch (error) {
-        dispatch({type:COMPLAINTS_LIST_FAIL,payload:error.message});
-    }
 }
 
 

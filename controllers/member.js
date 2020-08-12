@@ -88,7 +88,7 @@ exports.createMember=(req,res)=>{
             html:`
                 <div>
                     <h1>please use the following link to activate your account.</h1>
-                    <a href="https://lit-headland-48684.herokuapp.com/society/activate/${token}" target="_blank">click hear to Activate </a>
+                    <a href="${process.env.CLIENT_URL}/society/activate/${token}" target="_blank">click hear to Activate </a>
                     <hr />
                     <p>this email contains sensitive information</p>
                     <a href="${process.env.CLIENT_URL}" target="_blank">${process.env.CLIENT_URL}</a>

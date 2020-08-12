@@ -5,10 +5,11 @@ const router = express.Router();
 
 
 
-router.post('/seeComplaint',auth,(req,res)=>{
+router.get('/seeComplaint',auth,(req,res)=>{
+    console.log(req.member);
     (req.member.role=="Secratory")?
-    Complaint.find({}).sort({status:-1}).then(ret=>res.json(ret)):
-    Complaint.find({society:req.body.society}).sort({status:-1}).then(ret=>res.json(ret))
+    Complaint.find({}).populate("owner").sort({status:-1}).then(ret=>ret.length>0?res.json(ret):res.status(400).json({error:"No complaints available every one is Happy. :)"})):
+    Complaint.find({owner:req._id}).sort({status:-1}).then(ret=>ret.length>0?res.json(ret):res.status(404).json({error:"You have not filed any complaint yet!."}))
 })
 
 // router.get('/seeComplaint',auth,(req,res)=>{
@@ -21,7 +22,7 @@ router.post('/seeComplaint',auth,(req,res)=>{
 
 router.post('/makeComplaint',auth,(req,res)=>{
     const newComplaint=new Complaint({
-        belongTo:req.member._id,
+        owner:req.member._id,
         title:req.body.title,
         description:req.body.description        
     })
@@ -48,6 +49,7 @@ router.put('/EditComplaint/:id',async (req,res)=>{
     // res.send(req.params.id)
     const id=req.params.id;
     const updates=req.body;
+    console.log(updates);
     // res.json({err:"reaching hear"})
     try {
         const status=await Complaint.findByIdAndUpdate(id,updates);

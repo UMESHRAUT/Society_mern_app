@@ -23,7 +23,8 @@ const complaintSchema= new mongoose.Schema({
         default:Date.now()
     },
     closedOn:{
-        type:Date
+        type:Date,
+        default:Date.now()
     }
 }
 )
