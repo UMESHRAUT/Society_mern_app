@@ -20,7 +20,7 @@ function Complaints() {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getComplaints());   
+        dispatch(getComplaints(memberDetails.member.society._id));   
         // console.log(memberDetails.member.role);
         return () => {
              
@@ -92,7 +92,6 @@ function Complaints() {
                          {memberDetails.member.role=="Secratory" && 
                          <span>Filed By: {data?.owner?.name}</span>} 
                          <span>Filed At: {data?.filedAt?.split("T")[0]}</span>
-                         {console.log(data)}
                          {data.status==="Solved"&&<span>Solved At:{data?.closedOn?.split("T")[0]}</span>}
                          </div>
              </div>:<h1>you have not filed any complaint yet.</h1>)
@@ -109,7 +108,7 @@ function Complaints() {
             <form className="form-complaint" onSubmit={addComplaint}>
                 {/* {dispatch(getComplaints())} */}
                 <label>title</label>
-                <input name="title" value={complaint.title} onChange={handleChange} placeholder="lecage / carpenting / construction / about members" required/>
+                <input name="title" value={complaint.title} onChange={handleChange} placeholder="leakage / carpenting / construction / about members" required/>
                 <label>description</label>
                 <textarea name="description" value={complaint.description} onChange={handleChange} placeholder="please descripbe your complaint clearly" required/>
                 <button className="make-complaint-btn" type="submit">make a complaint</button>

@@ -5,11 +5,12 @@ const router = express.Router();
 
 
 
-router.get('/seeComplaint',auth,(req,res)=>{
-    console.log(req.member);
+router.get('/seeComplaint/:society',auth,(req,res)=>{
+    console.log("logging");
+    console.log(req);
     (req.member.role=="Secratory")?
-    Complaint.find({}).populate("owner").sort({status:-1}).then(ret=>ret.length>0?res.json(ret):res.status(400).json({error:"No complaints available every one is Happy. :)"})):
-    Complaint.find({owner:req._id}).sort({status:-1}).then(ret=>ret.length>0?res.json(ret):res.status(404).json({error:"You have not filed any complaint yet!."}))
+    Complaint.find({society:req.params.society}).populate("owner").sort({status:-1}).then(ret=>ret.length>0?res.json(ret):res.status(400).json({error:"No complaints available every one is Happy. :)"})):
+    Complaint.find({"owner":req.member._id}).populate("owner").sort({status:-1}).then(ret=>ret.length>0?res.json(ret):res.status(404).json({error:"You have not filed any complaint yet!."}))
 })
 
 // router.get('/seeComplaint',auth,(req,res)=>{
@@ -22,6 +23,7 @@ router.get('/seeComplaint',auth,(req,res)=>{
 
 router.post('/makeComplaint',auth,(req,res)=>{
     const newComplaint=new Complaint({
+        society:req.body.society,
         owner:req.member._id,
         title:req.body.title,
         description:req.body.description        

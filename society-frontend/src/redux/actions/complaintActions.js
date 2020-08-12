@@ -1,7 +1,7 @@
 import { COMPLAINTS_LIST_SUCESS, COMPLAINTS_LIST_REQUEST, COMPLAINTS_LIST_FAIL, COMPLAINTS_ADD_REQUEST, COMPLAINTS_ADD_SUCESS, COMPLAINTS_ADD_FAIL } from "../constants/complaintConstants"
 import Axios from "axios";
 
-export const getComplaints=()=> async (dispatch)=>{
+export const getComplaints=(society)=> async (dispatch)=>{
 
         dispatch({type:COMPLAINTS_LIST_REQUEST});
         try {
@@ -9,7 +9,7 @@ export const getComplaints=()=> async (dispatch)=>{
                 method:"get",
                 headers:{"content-type":"application/json","x-auth-token":JSON.parse(localStorage.getItem("memberInfo")).token},
             }
-            fetch('/api/complaint/seeComplaint',getComplaint)
+            fetch(`/api/complaint/seeComplaint/${society}`,getComplaint)
                 .then(res=>res.json())
                 .then(complaintData=>complaintData.error?
                     dispatch({type:COMPLAINTS_LIST_FAIL,payload:complaintData.error}):

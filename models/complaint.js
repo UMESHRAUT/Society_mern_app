@@ -1,7 +1,10 @@
 const mongoose=require('mongoose');
 
 const complaintSchema= new mongoose.Schema({
-
+    society:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Society'
+    },
     owner:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Member'
