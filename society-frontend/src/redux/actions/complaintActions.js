@@ -15,6 +15,7 @@ export const getComplaints=(society)=> async (dispatch)=>{
                     dispatch({type:COMPLAINTS_LIST_FAIL,payload:complaintData.error}):
                     dispatch({type:COMPLAINTS_LIST_SUCESS,payload:complaintData}))
         } catch (error) {
+            console.log("new error");
             console.log(error);
         }
 
