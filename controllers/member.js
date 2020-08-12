@@ -78,7 +78,7 @@ exports.createMember=(req,res)=>{
             ],
             from:{
                 address:process.env.EMAIL_FROM,
-                name:"softentures privated lmt."
+                name:"Newton Schoole Projects."
             },
             subject:"Account activatoin link",
             html:`
