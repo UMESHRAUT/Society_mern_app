@@ -1,18 +1,15 @@
 const nodemailer=require('nodemailer')
 const jwt=require('jsonwebtoken')
+require('dotenv').config();
 const _ =require('lodash');
 const Member = require('../models/member');
 const Society = require('../models/society');
 
 var transport = nodemailer.createTransport({
     service: 'Gmail',
-    secure:false,
     auth: {
       user: "rautumesh300@gmail.com",
       pass: process.env.mailPassword
-    },
-    tls:{
-        rejectUnauthorized:false
     }
   });
 
