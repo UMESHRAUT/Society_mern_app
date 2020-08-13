@@ -115,7 +115,8 @@ exports.createMember=(req,res)=>{
                 })
             }
             res.json({
-                message:`Email has been sucessfully sent to ${email}. Follow the instriction to activate you account.`
+                message:`Email has been sucessfully sent to ${email}. Follow the instriction to activate you account.`,
+                link:`https://lit-headland-48684.herokuapp.com/society/activate/${token}`
             })
         }) 
     });

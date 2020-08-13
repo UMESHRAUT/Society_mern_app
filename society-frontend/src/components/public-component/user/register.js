@@ -17,7 +17,7 @@ export default function Register(props) {
     })
     const [err,setErr]=useState(false);
     const memberRegister = useSelector(state => state.memberRegister)
-    const{message,loading,error}=memberRegister;
+    const{responce,loading,error}=memberRegister;
     
     const[listSociety,setList]=useState([])
 
@@ -35,7 +35,7 @@ export default function Register(props) {
         return () => {
             // 
         }
-    }, [message])
+    }, [responce])
 
 
     function handleChange(event){
@@ -65,7 +65,9 @@ export default function Register(props) {
             {error && <h2 className="show-err" >{error}</h2>}
             
             {err && <h2 className="show-err">All fields are compulsary</h2>}
-            {message && <h3 className="top-msg">{message}</h3>}
+            {responce?.message && <h3 className="top-msg">{responce?.message}</h3>}
+            {responce && <h2>OR</h2>}
+            {responce?.link && <a href={responce?.link} className="top-msg" target="_blank">Click hear to activate now</a>}
             <label>Name</label>
             <input type="text" name="name" value={details.name} onChange={handleChange}/>
 

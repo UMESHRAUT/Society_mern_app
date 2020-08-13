@@ -6,7 +6,7 @@ function memberRegisterReducer(state={},action){
             return {loading:true}
         case MEMBER_REGISTER_SUCESS:
             console.log(action.payload)
-            return {loading:false,message:action.payload};
+            return {loading:false,responce:action.payload};
         case MEMBER_REGISTER_FAIL:
             console.log(action.payload);
             return {loading:false,error:action.payload};

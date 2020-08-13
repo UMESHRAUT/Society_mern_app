@@ -25,7 +25,7 @@ export const RegisterMember=(name,society,role,room_no,email,password,confirm_pa
         }
         fetch("/api/member/register",data)
         .then(res=>res.json())
-        .then(resp=>resp.message?dispatch({type:MEMBER_REGISTER_SUCESS,payload:resp.message}):
+        .then(resp=>resp.message?dispatch({type:MEMBER_REGISTER_SUCESS,payload:resp}):
         dispatch({type:MEMBER_REGISTER_FAIL,payload:resp.error})).catch(err=>console.log("logging error"+err))
 
     } catch (error) {
