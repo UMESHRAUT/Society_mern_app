@@ -6,7 +6,7 @@ export const getComplaints=(society)=> async (dispatch)=>{
         dispatch({type:COMPLAINTS_LIST_REQUEST});
         try {
             const getComplaint={
-                method:"get",
+                method:"post",
                 headers:{"content-type":"application/json","x-auth-token":JSON.parse(localStorage.getItem("memberInfo")).token},
             }
             fetch(`/api/complaint/seeComplaint/${society}`,getComplaint)
@@ -22,13 +22,13 @@ export const getComplaints=(society)=> async (dispatch)=>{
 }
 
 
-export const MakeComplaint=(title,description)=> (dispatch)=>{
+export const MakeComplaint=(title,description,society)=> (dispatch)=>{
     try {
         dispatch({type:COMPLAINTS_ADD_REQUEST})
     const complaintRequest={
         method:"post",
         headers:{"content-type":"application/json","x-auth-token":JSON.parse(localStorage.getItem("memberInfo")).token},
-        body:JSON.stringify({title,description})
+        body:JSON.stringify({society,title,description})
     }
     fetch('/api/complaint/makeComplaint',complaintRequest)
     .then(data=>data.json())

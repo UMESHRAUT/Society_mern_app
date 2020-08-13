@@ -375,15 +375,15 @@ font-size: 1.3rem;
     flex-wrap: wrap;
     text-decoration: underline;
     word-wrap: break-word;
-    font-size: 1.5rem;
-    text-decoration: none;
-    padding: .3rem;
+    font-size: 3rem;
+    padding: 2rem 0 1rem 0;
     /* padding: 5rem 0 0 3rem; */
 }
 .service_logo{
     display: inline-block;
     font-size: 3rem;
 }
+
 .service_provider{
     width: 90vw;
     display: grid;
@@ -838,14 +838,18 @@ border-radius: 1rem;
     border-radius: 1rem;
 }
 .float_left{
-    float: left;
-    display: flex;
+    height: 100%;
     width: 100%;
-    /* flex-direction: ; */
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
 }
 .float_right{
-
-    float: right;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
 }
 .quote{
     display: flex;

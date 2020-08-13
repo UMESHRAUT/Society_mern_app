@@ -38,27 +38,42 @@ exports.createMember=(req,res)=>{
         
     }
 
-    Member.findOne({$or:[{email},{room_no}]}).exec((err,user)=>{
+    Member.find({$or:[{email},{room_no}]}).exec((err,users)=>{
         if(err){
             return res.status(500).json({
                 error:"something went wrong!."
             })
         }
 
-
-        if(user){
-            console.log(user.room_no);
-            if(user.room_no===room_no){
-                console.log("Member with this room No. is already exist");
+        users.map(user=>{
+            if(user.society==society && user.room_no==room_no){
+                console.log("Member with this room No. is already exist in");
                 return res.status(400).json({
-                    error:"Member with this room no already exist"
+                    error:`Member with this room no. is already exist`
                 }) 
             }
+
+        if(user.email==email){
+            console.log(user.room_no);
             console.log(password+""+confirm_pass);
             return res.status(400).json({
                 error:"Member with this Email is already exist!!"
-            })
-        }
+            })}
+        })
+        //     if(user.society==society && user.room_no==room_no){
+        //         console.log("Member with this room No. is already exist");
+        //         return res.status(400).json({
+        //             error:"Member with this room no already exist"
+        //         }) 
+        //     }
+
+        // if(user.email==email){
+        //     console.log(user.room_no);
+        //     console.log(password+""+confirm_pass);
+        //     return res.status(400).json({
+        //         error:"Member with this Email is already exist!!"
+        //     })
+        // }
 
 
         const token=jwt.sign(

@@ -41,9 +41,11 @@ function Complaints() {
     // const[complaints,setComplaints]=useState([])
 
     const addComplaint=(e)=>{
+        console.log(memberDetails.member.society._id);
         e.preventDefault();
-        dispatch(MakeComplaint(complaint.title,complaint.description))
-        setTimeout(()=>dispatch(getComplaints()),1000)
+        // memberDetails?.member?.society?._id
+        dispatch(MakeComplaint(complaint.title,complaint.description,memberDetails?.member?.society?._id))
+        setTimeout(()=>dispatch(getComplaints(memberDetails.member.society._id)),1000)
         setComplaint({
             title:"",
             description:""
@@ -58,7 +60,9 @@ function Complaints() {
         headers:{"content-type":"application/json","x-auth-token":memberDetails.token},
         body:JSON.stringify({status:"Solved",closedOn:Date.now})
         }   
-        fetch(`/api/complaint/EditComplaint/${e._id}`,dataTo).then(data=>console.log(data)).then(()=>dispatch(getComplaints()))
+        fetch(`/api/complaint/EditComplaint/${e._id}`,dataTo)
+        .then(data=>console.log(data))
+        .then(()=>dispatch(getComplaints(memberDetails.member.society._id)))
     }
 
     // console.log(complaints);

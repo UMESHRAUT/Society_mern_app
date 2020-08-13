@@ -37,7 +37,7 @@ function Society(props) {
     }
 
     const changeRole=async(member)=>{
-        console.log(member._id+" " +member.name);
+
         await fetch(`/api/member/changeRole/${member._id}`,
         {method:'put',
         headers:{"content-type":"application/json"},
@@ -70,9 +70,10 @@ function Society(props) {
     {memberError&&<div className="show-err"/>}
                 {membersList?.map(member=>{
                     return <div className="members-list" key={member._id}>
+                        {console.log(member)}
                         <h1>{member.name}</h1>
                 <h2>Room No:{member.room_no}</h2>
-                <h2>Role: {member.role} <button className="roleChanger" onClick={confirm_cancle_role}><RiUserSettingsLine/> Change Role</button> </h2>
+                <h2>Role: {member.role} <button className="roleChanger" onClick={()=>confirm_cancle_role(member)}><RiUserSettingsLine/> Change Role</button> </h2>
                         </div>
                 })}
             </div>

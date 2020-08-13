@@ -14,7 +14,6 @@ const memberSchema= new Schema({
     room_no:{
         type:String,
         required:true,
-        unique:true
     },
     role:{
         type:String,
