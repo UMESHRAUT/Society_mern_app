@@ -77,7 +77,7 @@ export default function Register(props) {
                 {
                     listSociety.length==0?<option value='undefined'>Loading..</option>:
                    listSociety.map(society=>{
-                   return <option key={society._id} value={society._id} name="society" onClick={handleChange}>{society.name}</option>
+                   return <option key={society._id} className="select-one" value={society._id} name="society" onClick={handleChange}>{society.name}</option>
                    })
                } 
             </select>

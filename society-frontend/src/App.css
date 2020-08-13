@@ -7,7 +7,7 @@
 }
 
 #root{
-    height: 100vh;
+    height: 100%;
 }
 body{
     margin: 0;
@@ -159,7 +159,7 @@ a{
     align-items: center;
     align-content: center;
     justify-content: center;
-    border: .1rem solid rgb(82, 28, 133);
+    border: .1rem solid rgb(71,132,255);
     border-radius: 1rem;
     height: 3rem;
 }
@@ -287,7 +287,7 @@ h5{
 }
 /* HERO */
 .hero{
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
     background: url("./image/society.jpg") center/cover no-repeat rgb(202, 146, 146);
     background-attachment: fixed;
@@ -357,6 +357,8 @@ h5{
 
 /* FOOTER */
 .footer{
+    /* position: relative; */
+    bottom: 0;
     padding: 1rem;
     background: rgb(2, 42, 65);
     text-align: center;
@@ -365,7 +367,7 @@ h5{
 
 /* service provided */
 .service_container{
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
 background: rgb(218, 218, 219);
 text-align: center;
@@ -389,17 +391,16 @@ font-size: 1.3rem;
 }
 
 .service_provider{
-    width: 90vw;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
-    /* grid-row-gap: 2rem;
-    grid-column-gap: 50px; */
-    margin:auto 1rem;
-    
+    display: flex;
+    flex-wrap: wrap;
+    margin:auto;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .service_provider div{
-    /* border: 1px solid red; */
     background: white;
+    width: 350px;
+    /* min-width: 350px; */
     padding: 1rem;
     box-shadow: 10px 10px 5px gray;
     border-radius: 1rem;
@@ -473,6 +474,9 @@ font-size: 1.3rem;
 input{
     display: block;
     margin-top: .3rem;
+    border: 1px solid black;
+    padding: .5rem;
+    border-radius: .5rem;
     width: 90%;
     height: 2.5rem;
     outline-color: rgb(74, 85, 228);
@@ -503,8 +507,11 @@ textarea{
     margin-top: 2rem;
     display: inline-block;
     width: 90%;
+    font-size: 1rem;
     font-size: x-large;
     outline:none;
+    border: 1px solid black;
+    border-radius: .5rem;
     color: black;
     height: 2.5rem;
 }
@@ -513,7 +520,10 @@ option{
     overflow: scroll;
 }
 .select{
+    border: 1px solid black;
+    border-radius: .5rem;
     color: rgb(192, 191, 190);
+    font-size: 1.5rem;
 }
 .btn{
 
@@ -547,11 +557,6 @@ option{
         align-items: center;
         flex-direction: column
     }
-    .service_provider{
-        margin: 0 auto;
-        grid-template-columns: repeat(auto-fit,minmax(auto,1fr));
-    }
-
 }
 
 /* Rules  */
@@ -696,11 +701,8 @@ article{
 }
 
 .select-one{
-    margin: 1rem auto;
-    width: 100%;
-    display: flex;
-    cursor: pointer;
-    justify-content: space-around;
+    color: rgb(34, 34, 34);
+    font-size: 1.5rem;
 }
 
 .radio{
@@ -846,14 +848,12 @@ border-radius: 1rem;
     border-radius: 1rem;
 }
 .float_left{
-    height: 100%;
     width: 100%;
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
 }
 .float_right{
-    height: 100%;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -964,7 +964,7 @@ border-radius: 1rem;
 .loader {
     border: 16px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid #4151df;
+    border-top: 16px solid rgb(71,132,255);
     width: 90px;
     height: 90px;
     animation: spin 2s linear infinite;
