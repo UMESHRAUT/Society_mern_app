@@ -36,8 +36,10 @@ a{
     color: white;
     font-size: x-large;
     z-index: 99999999999;
+    text-transform: capitalize;
 }
 .deleteSociety{
+    position: relative;
     display: flex;
     outline: none;
     border: none;
@@ -47,8 +49,8 @@ a{
     align-items: center;
     height: 3rem;
     position: absolute;
-    top: 7rem;
-    right: 5rem;
+    top: 5rem;
+    right: 1rem;
     font-size: x-large;
 }
 
@@ -82,13 +84,13 @@ a{
     flex-wrap: wrap;
     height: auto;
     background-color: rgb(221, 216, 216);
-    background: red;
     border-radius: 1rem;
     width: 70%;
     margin: 1rem auto;
     justify-content: space-around;
     padding: .5rem;
     align-items: center;
+
 
 }
 
@@ -1010,9 +1012,8 @@ border-radius: 1rem;
     cursor: pointer;
     outline: none;
 }
-.members-list:hover .roleChanger{
-    display: inline;
-}
+
+
   .members-list{
       display: flex;
       flex-wrap: wrap;
@@ -1020,11 +1021,15 @@ border-radius: 1rem;
       border-radius: 1rem;
       width: 70%;
       margin: 1rem auto;
+      text-transform: capitalize;
       justify-content: space-around;
       padding: .5rem;
       height: 5rem;
       align-items: center;
   }
+  .members-list:hover .roleChanger{
+    display: block;
+}
   .members{
     display: flex;
     flex-wrap: wrap;
@@ -1032,6 +1037,7 @@ border-radius: 1rem;
     border-radius: 1rem;
     width: 70%;
     margin: 1rem auto;
+    text-transform: capitalize;
     justify-content: space-around;
     padding: .5rem;
     height: 5rem;
@@ -1039,7 +1045,10 @@ border-radius: 1rem;
   }
 
   .members-list:hover{
-      height: 6rem;
+      /* height: auto; */
+      /* flex-direction: column;
+      justify-content: center;
+      align-items: center; */
       background-color: rgb(236, 233, 233);
       width: 75%;
       transition: all .2s;
@@ -1068,9 +1077,16 @@ border-radius: 1rem;
         display: flex;
         flex-direction: column;      }
       .show_details{
-display: none;
+        display: none;
       }
       .roomNo{
           display: flex;
       }
+      .members-list:hover{
+        height: auto;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
   }

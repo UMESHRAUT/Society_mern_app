@@ -71,7 +71,7 @@ export default function SocietyRegister(props) {
             </div>
             <div>
             <button className="btn primary" type="submit">Register</button>
-            <button className="btn primary" type="button" onClick={()=>{setAdd(false)}} >cancle</button>
+            <button className="btn" type="button" onClick={()=>{setAdd(false)}} >Cancel</button>
             </div>
         </form>
         </>

@@ -34,8 +34,8 @@ export default function ViewMembers() {
                     {
                     <div className="details" >
                         <div >
-                    <h2 className="roomNo">Room no:{member.room_no}</h2>
-                    <h3>mail:{member.email}</h3>
+                    <h2 className="roomNo">Room no: {member.room_no}</h2>
+                    <h3>mail: {member.email}</h3>
                     </div>
                     <h1>{member.role}</h1>
                 </div>}

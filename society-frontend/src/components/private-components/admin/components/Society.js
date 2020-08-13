@@ -62,7 +62,7 @@ function Society(props) {
                 <h1>{socities?.name}</h1>
                 <h2>{socities?.address}</h2>
                 <h2>Registration No: {socities?.reg_no}</h2>
-                <button className="deleteSociety"onClick={confirm_cancle}>Delete society <RiDeleteBinLine  className="deleteBtn"/></button>
+                <div className="deleteSociety"><RiDeleteBinLine  className="deleteBtn"/></div>
             </div>
 
             <div className="All-members">
@@ -70,10 +70,10 @@ function Society(props) {
     {memberError&&<div className="show-err"/>}
                 {membersList?.map(member=>{
                     return <div className="members-list" key={member._id}>
-                        {console.log(member)}
                         <h1>{member.name}</h1>
                 <h2>Room No:{member.room_no}</h2>
-                <h2>Role: {member.role} <button className="roleChanger" onClick={()=>confirm_cancle_role(member)}><RiUserSettingsLine/> Change Role</button> </h2>
+                <h2>Role: {member.role}</h2>
+                <button className="roleChanger" onClick={()=>confirm_cancle_role(member)}><RiUserSettingsLine/> Change Role</button>
                         </div>
                 })}
             </div>
