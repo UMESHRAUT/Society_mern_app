@@ -4,26 +4,26 @@ const _ =require('lodash');
 const Member = require('../models/member');
 const Society = require('../models/society');
 
-// var transport = nodemailer.createTransport({
-//     service: 'Gmail',
-//     secure:false,
-//     auth: {
-//       user: "rautumesh300@gmail.com",
-//       pass: process.env.mailPassword
-//     },
-//     tls:{
-//         rejectUnauthorized:false
-//     }
-//   });
-
 var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    service: 'Gmail',
+    secure:false,
     auth: {
-      user: "0bd50ec6d1c1d8",
-      pass: "47920f1ffeb570"
+      user: "rautumesh300@gmail.com",
+      pass: process.env.mailPassword
+    },
+    tls:{
+        rejectUnauthorized:false
     }
   });
+
+// var transport = nodemailer.createTransport({
+//     host: "smtp.mailtrap.io",
+//     port: 2525,
+//     auth: {
+//       user: "0bd50ec6d1c1d8",
+//       pass: "47920f1ffeb570"
+//     }
+//   });
 
 exports.createMember=(req,res)=>{
     const {name,society,room_no,role,email,password,confirm_pass}=req.body;
