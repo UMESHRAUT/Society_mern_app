@@ -80,11 +80,11 @@ function Complaints() {
                 return( complaints!=='undefined'?
                 <div className="individual" key={index}>
                 <div className="complaint-title">
-                    <span className="title">{data.title}</span>
-                    <span className="title">Status: {data.status}</span>                    {
+                    <span className="comp_title">{data.title}</span>
+                    <span className="comp_title">Status: {data.status}</span>                    {
             memberDetails.member.role==="Secratory" && data.status=="pending"&&
                     <div className="edit-btn">
-                <button className="Edit-complaint" onClick={()=>EditComplaint(data)}>Solve Now</button>
+                <button className="Edit-complaint" onClick={()=>EditComplaint(data)}>Mark Solved</button>
                 </div>}
                 </div>
                 <div className="complaint-description">

@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+    /* text-transform:capitalize; */
 }
 
 #root{
@@ -204,7 +205,7 @@ a{
 .nav-links a:hover{
     /* background-color: rgb(1, 204, 119); */
     color: rgb(243, 243, 243);
-    font-size: xx-large;
+    font-weight: bolder;
     transition: all .3s;
 }
 h5{
@@ -379,6 +380,9 @@ font-size: 1.3rem;
     padding: 2rem 0 1rem 0;
     /* padding: 5rem 0 0 3rem; */
 }
+/* .comp_title{
+
+} */
 .service_logo{
     display: inline-block;
     font-size: 3rem;
@@ -442,7 +446,7 @@ font-size: 1.3rem;
     font-size: x-large;
     background-color: rgb(228, 107, 107);
     transition: all .3s;
-    margin: 2rem 0;
+    margin: 2rem auto;
 }
 .color_black{
     color: blue;
@@ -642,7 +646,7 @@ article{
     font-size:x-large;
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-between ;
+    justify-content:space-around ;
     align-items: center;
     text-justify: distribute;
 }
@@ -722,6 +726,7 @@ article{
 }
 .edit-complaint{
     position: absolute;
+    cursor: pointer;
     height: 3rem;
     width: 6rem;
     top:1rem;
@@ -731,6 +736,9 @@ article{
     background: rgb(59, 148, 32);
     font-size: large;
     outline: none;
+}
+.edit-complaint:hover{
+    background: rgb(28, 167, 23);
 }
 
 
@@ -815,8 +823,8 @@ article{
 }
 
 .reply{
-    margin: 1rem 0;
-    padding: 2rem 2rem 0 2rem;
+    margin: .5rem 0;
+    padding: 1rem 1rem 0 1rem;
     border: 2px solid blue;
     /* background: red; */
 }
@@ -834,7 +842,7 @@ border-radius: 1rem;
 
 .message{
     display: flex;
-    margin: 1.5rem;
+    margin: .5rem;
     border-radius: 1rem;
 }
 .float_left{
